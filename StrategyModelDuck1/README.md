@@ -3,6 +3,7 @@
 本文参照《Head First 设计模式》，转载请注明出处
 对于整个系列，我们按照这本书的设计逻辑，使用情景分析的方式来描述，并且穿插使用一些问题，总结的方式来讲述。并且所有的开发源码，都会托管到github上。
 项目地址：https://github.com/jixiang52002/StrategyModel
+
 原文地址：https://www.jianshu.com/p/ea1631931893
 # 引文
 Joe的公司是做模拟鸭子活动的游戏而出名，这款游戏取名为SimUDuck，这款游戏具有非常多的鸭子，一边游泳一边呱呱叫。这里的设计采用了标准的OO（Object Oriented，面向对象）的方式编写，这里有一个鸭子的超类（SuperClass），后续所有的鸭子都必须继承这个超类。
