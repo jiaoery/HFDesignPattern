@@ -2,7 +2,7 @@
 
 本文参照《Head First 设计模式》，转载请注明出处
 对于整个系列，我们按照这本书的设计逻辑，使用情景分析的方式来描述，并且穿插使用一些问题，总结的方式来讲述。并且所有的开发源码，都会托管到github上。
-项目地址：https://github.com/jixiang52002/StrategyModel
+项目地址：https://github.com/jixiang52002/HFDesignPattern
 
 原文地址：https://www.jianshu.com/p/ea1631931893
 # 引文
