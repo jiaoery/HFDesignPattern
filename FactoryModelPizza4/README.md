@@ -1,14 +1,14 @@
-# Head First 设计模式（4）----- 工厂方法模式
-
 本文参照《Head First 设计模式》，转载请注明出处
 对于整个系列，我们按照这本书的设计逻辑，使用情景分析的方式来描述，并且穿插使用一些问题，总结的方式来讲述。并且所有的开发源码，都会托管到github上。
 项目地址：https://github.com/jixiang52002/HFDesignPattern
-![](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388bcc63e8c?w=598&h=393&f=png&s=288265)
+![](https://upload-images.jianshu.io/upload_images/2326194-2fa6a4eeacb6c1df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 回顾上一篇文章讲解了设计模式中常用的一种模式------装饰者模式。并结合星巴兹咖啡设计进行实战解析，并且从自己设计到JAVA自带设计模式做了讲解。想要了解的朋友可以回去回看一下。
+[Head First 设计模式（3）----装饰者模式](https://www.jianshu.com/p/2f79bdbd99ba)
 
-本章将着重于在开发中最常遇到的初始化的问题，让你不会在new一个新的对象中感觉头疼。虽然本章取名是将工厂模式，但是这里会讲解两个设计模式，分别为工厂模式和抽象工厂设计模式。本章对于JAVA中抽象会大量运用到，未了解这方面的知识的朋友可以去查阅相关的资料。
+
+本章将着重于在开发中最常遇到的初始化的问题，让你不会在new一个新的对象中感觉头疼。虽然本章取名是将工厂模式，但是这里会讲解两个设计模式，分别为工厂模式和抽象工厂设计模式。本章对于JAVA中抽象这个概念会大量运用到，未了解这方面的知识的朋友可以去查阅相关的资料。
 
 # 1.前言
 作为一个合格的JAVA开发程序员，我们知道要实例化一个类为对象，我们会利用类中的构造函数，使用new这个关键字。比如：
@@ -35,9 +35,9 @@ Duck duck=new MallardDuck();
 
 在开始说优化的方式之前，我们先来认识一下拓展和修改。
 到这里，Duck将退出舞台
-![image](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388bd0405ae?w=440&h=346&f=jpeg&s=9222)
+![image](https://upload-images.jianshu.io/upload_images/2326194-1c8e379478eaceba.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 接下来，将由PIZZA上台
-![image](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388bd97153c?w=610&h=420&f=jpeg&s=38171)
+![image](https://upload-images.jianshu.io/upload_images/2326194-cfb4e9b61ea78b7b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 爱吃的吃货都不会陌生，生产一份披萨需要经过以下几个步骤：
 * 准备（prepare）
 * 烤制  （bake）
@@ -139,10 +139,10 @@ public class PizzaStore {
 ```
 # 3.简单工厂（非设计模式）
 简单工厂其实严格意义上不是设计模式，而是一种编程习惯，还是最常用的那种。。。。（哎，你别动手）
-![image](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388c44422cf?w=450&h=338&f=jpeg&s=13562)
+![别打脸](https://upload-images.jianshu.io/upload_images/2326194-224cd9b67db3fca9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 （屈服于大佬的淫威）但是呢，并不能说它不是一种设计模式就不重视它，从前面的PIZZA类图分析：
 
-![PIZZA类图](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388c475a628?w=1240&h=655&f=png&s=123526)
+![PIZZA类图](https://upload-images.jianshu.io/upload_images/2326194-51054fb65dba1e41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 其实这时候，我们已经接近了设计模式。所以接下来，就是最重要的设计模式。
 
@@ -152,9 +152,9 @@ public class PizzaStore {
 * 所有加盟店使用与总店一起使用相同的配方（直营店模式）
 * 每家加盟店可以根据当地风味的不同，自己更改其中的配方和风味（加盟商模式）
 从现在做的比较大的必胜客，肯德基，麦当劳的经营模式来看，后者会让经营模式更加灵活。但是前者可以保证加盟店的产品质量和口碑，比如京东线下店，苏宁易购等。所以我们来看看不同的加盟模式，会对原有的业务需求造成什么影响。
-## 4.1 直营店模式
+##4.1 完全直营店
 首先是设计结构，PizzaStore
-![直营店模式](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388d8994f06?w=1240&h=565&f=png&s=102649)
+![直营店模式](https://upload-images.jianshu.io/upload_images/2326194-0ef56c07b2f9ebe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 所以这里我们需要拓展SimplePizzaFactory，这里需要类似于NYPizzaFactory、ChicagoPizzaFactory、ChinaPizzaFactory（甚至可以再细分)，那么准备一份Pizza的流程就需要更改
 ```
 NYPizzaFactory factory=new NYPizzaFactory();
@@ -162,7 +162,7 @@ PizzaStore nyStore=new PizzaStore();
 nyStore.oderPizza("Veggie");
 ```
 相对来说就非常简单。那么如果是加盟商模式呢
-# 4.2 加盟商模式
+## 4.2 加盟商模式
 在某些加盟商里有一些经验很丰富的厨师，他们在做Pizza的时候，会加入自己的一些思路和想法，比如：
 过量的芝士，本地风味的榴莲，甚至可能存在双拼的情况。但是我们知道，我们在一开始是将这些操作放在SimplePizzaFactory里，这就使得代码结构不具备活性。就是前面提到的，拓展和修改方面不满足需求。
 那么，如何修改现有的结构可以满足需求呢？
@@ -235,15 +235,25 @@ public class NYPizzaStore extends AbstactPizzaStore {
 * 工厂方法需要将修改部分从稳定部分中抽离出来。
 * 工厂方法中必须有创建者类（稳定部分）和产品类（修改部分）
 
-![创建者类](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388fd4fc1ce?w=1240&h=671&f=png&s=94354)
+![创建者类](https://upload-images.jianshu.io/upload_images/2326194-59ae77b0617d648b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![产品类](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388ebe51114?w=1240&h=450&f=png&s=58298)
+![产品类](https://upload-images.jianshu.io/upload_images/2326194-6946e2ee7265957c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 到这里，就完成了加盟店的设计。
 
 # 5.工厂方法模式
 从前面我们认识了工厂方法，那么到这里就可以推出我们第一个工厂模式------工厂方法模式。
->**工厂方法模式**定义了一个创建对象的接口，但是由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+>**工厂方法模式**
+>定义了一个创建对象的接口，但是由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
 
 抽象结构如下：
-![工厂模式抽象结构](https://user-gold-cdn.xitu.io/2019/9/10/16d1a388f30009bb?w=1240&h=645&f=png&s=90427)
+![工厂模式抽象结构](https://upload-images.jianshu.io/upload_images/2326194-82209dae99dbeebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+其中Creator提供了一个创建对象的方法的接口，也称为“工厂方法”。其他实现该方法的子类，都能使用该方法生产出产品。
+这也正如工厂方法模式定义的，工厂方法由子类决定具体要实例化的类是哪一个。这里开发者只关心产品类的抽象类，也就是Product类。无需知道具体是哪一个类被实例化。
+
+# 6.总结
+
+>**工厂方法模式:**
+>定义了一个创建对象的接口，但是由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+
+相应的资料和代码托管地址[https://github.com/jixiang52002/HFDesignPattern](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fjixiang52002%2FHFDesignPattern)
